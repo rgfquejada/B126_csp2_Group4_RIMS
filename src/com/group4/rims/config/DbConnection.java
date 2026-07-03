@@ -10,6 +10,16 @@ public class DbConnection {
     private static final String USERNAME = "root";
     private static final String PASSWORD = "";
 
+    public static Connection connect() {
+        try {
+            return getConnection();
+        } catch (SQLException e) {
+            System.err.println("[DB ERROR] Failed to connect to MySQL: " + e.getMessage());
+            return null;
+        }
+    }
+
+
     private DbConnection() {
     }
 
