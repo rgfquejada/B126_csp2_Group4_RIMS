@@ -69,8 +69,6 @@ public class Dashboard {
                 staffView.displayMenu();
                 break;
             case 6:
-                // If SupplierView uses displayMenu(), use it here. 
-                // If it uses supplierMenu(), change this line to supplierView.supplierMenu();
                 supplierView.displayMenu(); 
                 break;
             case 0:

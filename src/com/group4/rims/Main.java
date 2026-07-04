@@ -29,6 +29,9 @@ public class Main {
             RecipeIngredientRepo recipeRepo = new RecipeIngredientRepoImpl(connection);
             StaffRepo staffRepo = new StaffRepoImpl(connection);
             SupplierRepo supplierRepo = new SupplierRepoImpl(connection);
+            InventoryTransactionRepo inventoryRepo = new InventoryTransactionRepoImpl(connection);
+            InventoryService inventoryService = new InventoryService(inventoryRepo);
+            InventoryController inventoryController = new InventoryController(inventoryService);
 
             // 3. Business Policy Layers Instantiation (Services)
             IngredientService ingredientService = new IngredientService(ingredientRepo);
@@ -46,7 +49,9 @@ public class Main {
 
             // 5. Interface Layout Elements Instantiation (Views)
             IngredientView ingredientView = new IngredientView(ingredientController, scanner);
-            InventoryView inventoryView = new InventoryView(ingredientController, scanner);
+
+            InventoryView inventoryView = new InventoryView(ingredientController, inventoryController, scanner);
+
             MenuItemView menuitemView = new MenuItemView(menuItemController, scanner);
             RecipeIngredientView recipeView = new RecipeIngredientView(recipeController, scanner);
             StaffView staffView = new StaffView(staffController, scanner);
