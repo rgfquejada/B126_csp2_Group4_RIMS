@@ -57,19 +57,19 @@ public class MenuItemView {
 
     private void handleViewAll() {
         List<MenuItem> list = menuItemController.getAllMenuItems();
-        System.out.println("\n==========================================================================");
-        System.out.printf("%-10s | %-25s | %-15s | %-12s | %-10s\n", "MENU ID", "ITEM NAME", "CATEGORY", "PRICE", "STATUS");
-        System.out.println("==========================================================================");
+        System.out.println("\n==================================================================================================================");
+        System.out.printf("%-10s | %-45s | %-25s | %-12s | %-10s\n", "MENU ID", "ITEM NAME", "CATEGORY", "PRICE", "STATUS");
+        System.out.println("==================================================================================================================");
         
         if (list.isEmpty()) {
             System.out.println("                      No restaurant menu dishes registered yet.          ");
         } else {
             for (MenuItem m : list) {
-                System.out.printf("%-10d | %-25s | %-15s | ₱%-11.2f | %-10s\n",
+                System.out.printf("%-10d | %-45s | %-25s | ₱%-11.2f | %-10s\n",
                         m.getMenuId(), m.getMenuName(), m.getCategory(), m.getPrice(), m.getStatus());
             }
         }
-        System.out.println("==========================================================================");
+        System.out.println("==================================================================================================================");
     }
 
     private void handleFindById() {

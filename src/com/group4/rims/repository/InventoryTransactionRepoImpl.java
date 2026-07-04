@@ -14,7 +14,7 @@ public class InventoryTransactionRepoImpl implements InventoryTransactionRepo {
 
     @Override
     public InventoryTransaction findById(int id) {
-        String query = "SELECT * FROM inventory_transactions WHERE transaction_id=?";
+        String query = "SELECT * FROM inventory_transaction WHERE transaction_id=?";
         try (PreparedStatement stmnt = connection.prepareStatement(query)) {
             stmnt.setInt(1, id);
             ResultSet rs = stmnt.executeQuery();
@@ -26,7 +26,7 @@ public class InventoryTransactionRepoImpl implements InventoryTransactionRepo {
     @Override
     public List<InventoryTransaction> findAll() {
         List<InventoryTransaction> transactions = new ArrayList<>();
-        String query = "SELECT * FROM inventory_transactions";
+        String query = "SELECT * FROM inventory_transaction";
         try (Statement stmnt = connection.createStatement();
              ResultSet rs = stmnt.executeQuery(query)) {
             while (rs.next()) transactions.add(mapRow(rs));
@@ -36,7 +36,7 @@ public class InventoryTransactionRepoImpl implements InventoryTransactionRepo {
 
     @Override
     public void save(InventoryTransaction transaction) {
-        String query = "INSERT INTO inventory_transactions (ingredient_id, staff_id, transaction_type, quantity, transaction_date, remarks) VALUES (?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO inventory_transaction (ingredient_id, staff_id, transaction_type, quantity, transaction_date, remarks) VALUES (?, ?, ?, ?, ?, ?)";
         try (PreparedStatement stmnt = connection.prepareStatement(query)) {
         	stmnt.setInt(1, transaction.getIngredientId());
         	stmnt.setInt(2, transaction.getStaffId());
@@ -50,7 +50,7 @@ public class InventoryTransactionRepoImpl implements InventoryTransactionRepo {
 
     @Override
     public void update(InventoryTransaction transaction) {
-        String query = "UPDATE inventory_transactions SET ingredient_id=?, staff_id=?, transaction_type=?, quantity=?, transaction_date=?, remarks=? WHERE transaction_id=?";
+        String query = "UPDATE inventory_transaction SET ingredient_id=?, staff_id=?, transaction_type=?, quantity=?, transaction_date=?, remarks=? WHERE transaction_id=?";
         try (PreparedStatement stmnt = connection.prepareStatement(query)) {
         	stmnt.setInt(1, transaction.getIngredientId());
         	stmnt.setInt(2, transaction.getStaffId());
@@ -65,7 +65,7 @@ public class InventoryTransactionRepoImpl implements InventoryTransactionRepo {
 
     @Override
     public void delete(int id) {
-        String query = "DELETE FROM inventory_transactions WHERE transaction_id=?";
+        String query = "DELETE FROM inventory_transaction WHERE transaction_id=?";
         try (PreparedStatement stmnt = connection.prepareStatement(query)) {
         	stmnt.setInt(1, id);
         	stmnt.executeUpdate();
@@ -75,7 +75,7 @@ public class InventoryTransactionRepoImpl implements InventoryTransactionRepo {
     @Override
     public List<InventoryTransaction> findByIngredientId(int ingredientId) {
         List<InventoryTransaction> transactions = new ArrayList<>();
-        String query = "SELECT * FROM inventory_transactions WHERE ingredient_id=?";
+        String query = "SELECT * FROM inventory_transaction WHERE ingredient_id=?";
         try (PreparedStatement stmnt = connection.prepareStatement(query)) {
         	stmnt.setInt(1, ingredientId);
             ResultSet rs = stmnt.executeQuery();
@@ -87,7 +87,7 @@ public class InventoryTransactionRepoImpl implements InventoryTransactionRepo {
     @Override
     public List<InventoryTransaction> findByStaffId(int staffId) {
         List<InventoryTransaction> transactions = new ArrayList<>();
-        String query = "SELECT * FROM inventory_transactions WHERE staff_id=?";
+        String query = "SELECT * FROM inventory_transaction WHERE staff_id=?";
         try (PreparedStatement stmnt = connection.prepareStatement(query)) {
         	stmnt.setInt(1, staffId);
             ResultSet rs = stmnt.executeQuery();

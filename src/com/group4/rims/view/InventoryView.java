@@ -145,10 +145,10 @@ public class InventoryView {
  
     private void handleViewTransactions() {
         List<InventoryTransaction> list = inventoryController.getAllTransactions();
-        System.out.println("\n======================================================================================");
+        System.out.println("\n==========================================================================================================");
         System.out.printf("%-6s | %-20s | %-8s | %-16s | %-8s | %-20s\n", 
                 "TX ID", "INGREDIENT ID", "STAFF ID", "TYPE", "QTY", "REMARKS");
-        System.out.println("======================================================================================");
+        System.out.println("==========================================================================================================");
         
         if (list.isEmpty()) {
             System.out.println("                         No inventory transactions logged.                          ");
@@ -159,7 +159,7 @@ public class InventoryView {
                         tx.getTransactionType(), tx.getQuantity(), tx.getRemarks());
             }
         }
-        System.out.println("======================================================================================");
+        System.out.println("==========================================================================================================");
     }
 
     private int readIntegerInput() {
