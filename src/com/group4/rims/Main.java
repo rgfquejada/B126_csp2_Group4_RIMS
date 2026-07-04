@@ -49,9 +49,7 @@ public class Main {
 
             // 5. Views
             IngredientView ingredientView = new IngredientView(ingredientController, scanner);
-
             InventoryView inventoryView = new InventoryView(ingredientController, inventoryController, scanner);
-
             MenuItemView menuitemView = new MenuItemView(menuItemController, scanner);
             RecipeIngredientView recipeView = new RecipeIngredientView(recipeController, scanner);
             StaffView staffView = new StaffView(staffController, scanner);

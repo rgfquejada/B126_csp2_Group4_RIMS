@@ -61,14 +61,14 @@ public class InventoryView {
     private void handleStockStatus() {
         List<Ingredient> list = ingredientController.getAllIngredients();
         System.out.println("\n=======================================================");
-        System.out.printf("%-5s | %-20s | %-12s | %-8s\n", "ID", "INGREDIENT NAME", "CURRENT STOCK", "UNIT");
+        System.out.printf("%-5s | %-25s | %-12s | %-8s\n", "ID", "INGREDIENT NAME", "CURRENT STOCK", "UNIT");
         System.out.println("=======================================================");
         
         if (list.isEmpty()) {
             System.out.println("               No inventory items logged.              ");
         } else {
             for (Ingredient i : list) {
-                System.out.printf("%-5d | %-20s | %-12d | %-8s\n",
+                System.out.printf("%-5d | %-25s | %-12d | %-8s\n",
                         i.getIngredientId(), i.getIngredientName(), i.getStockQuantity(), i.getUnit());
             }
         }
@@ -80,7 +80,7 @@ public class InventoryView {
         System.out.println("\n=====================================================================");
         System.out.println("                  ⚠️ CRITICAL LOW STOCK WARNINGS ⚠️                 ");
         System.out.println("=====================================================================");
-        System.out.printf("%-5s | %-20s | %-10s | %-12s | %-8s\n", "ID", "NAME", "CURRENT", "REORDER LVL", "STATUS");
+        System.out.printf("%-5s | %-25s | %-10s | %-12s | %-8s\n", "ID", "NAME", "CURRENT", "REORDER LVL", "STATUS");
         System.out.println("=====================================================================");
 
         boolean zeroAlerts = true;
@@ -88,7 +88,7 @@ public class InventoryView {
             if (i.getStockQuantity() <= i.getReorderLevel()) {
                 zeroAlerts = false;
                 String flag = i.getStockQuantity() == 0 ? "OUT OF STOCK" : "LOW STOCK";
-                System.out.printf("%-5d | %-20s | %-10d | %-12d | %-8s\n",
+                System.out.printf("%-5d | %-25s | %-10d | %-12d | %-8s\n",
                         i.getIngredientId(), i.getIngredientName(), i.getStockQuantity(), i.getReorderLevel(), flag);
             }
         }
@@ -146,7 +146,7 @@ public class InventoryView {
     private void handleViewTransactions() {
         List<InventoryTransaction> list = inventoryController.getAllTransactions();
         System.out.println("\n======================================================================================");
-        System.out.printf("%-6s | %-13s | %-8s | %-16s | %-8s | %-20s\n", 
+        System.out.printf("%-6s | %-20s | %-8s | %-16s | %-8s | %-20s\n", 
                 "TX ID", "INGREDIENT ID", "STAFF ID", "TYPE", "QTY", "REMARKS");
         System.out.println("======================================================================================");
         
@@ -154,7 +154,7 @@ public class InventoryView {
             System.out.println("                         No inventory transactions logged.                          ");
         } else {
             for (InventoryTransaction tx : list) {
-                System.out.printf("%-6d | %-13d | %-8d | %-16s | %-8d | %-20s\n",
+                System.out.printf("%-6d | %-20d | %-8d | %-16s | %-8d | %-20s\n",
                         tx.getTransactionId(), tx.getIngredientId(), tx.getStaffId(), 
                         tx.getTransactionType(), tx.getQuantity(), tx.getRemarks());
             }
