@@ -34,7 +34,7 @@ public class StaffRepoImpl implements StaffRepo {
     @Override
     public List<StaffUser> findAll() {
         List<StaffUser> staffList = new ArrayList<>();
-        String query = "SELECT * FROM staff";
+        String query = "SELECT * FROM staff_users";
         try (Statement stmnt = connection.createStatement();
              ResultSet rs = stmnt.executeQuery(query)) {
             while (rs.next()) staffList.add(mapRow(rs));
@@ -112,10 +112,10 @@ public class StaffRepoImpl implements StaffRepo {
 
     private StaffUser mapRow(ResultSet rs) throws SQLException {
         return new StaffUser(
-            rs.getInt("staff_id"),
+            rs.getInt("staffid"),
             rs.getString("username"),
             rs.getString("password"),
-            rs.getString("full_name"),
+            rs.getString("fullname"),
             rs.getString("role")
         );
     }

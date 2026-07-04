@@ -97,7 +97,7 @@ public class RecipeIngredientRepoImpl implements RecipeIngredientRepo {
     private RecipeIngredient mapRow(ResultSet rs) throws SQLException {
         return new RecipeIngredient(
             rs.getInt("recipe_id"),
-            rs.getInt("menu_id"),
+            rs.getInt("menu_items_id"),
             rs.getInt("ingredient_id"),
             rs.getDouble("quantity_needed")
         );
