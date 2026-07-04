@@ -16,7 +16,7 @@ public class StaffRepoImpl implements StaffRepo {
 
     @Override
     public StaffUser findById(int id) {
-        String query = "SELECT * FROM staff WHERE staff_id=?";
+        String query = "SELECT * FROM staff_users WHERE staff_id=?";
         try (PreparedStatement stmnt = connection.prepareStatement(query)) {
             stmnt.setInt(1, id);
             ResultSet rs = stmnt.executeQuery();
@@ -38,7 +38,7 @@ public class StaffRepoImpl implements StaffRepo {
 
     @Override
     public void save(StaffUser staff) {
-        String query = "INSERT INTO staff (username, password, full_name, role) VALUES (?, ?, ?, ?)";
+        String query = "INSERT INTO staff_users (username, password, full_name, role) VALUES (?, ?, ?, ?)";
         String hashedPassword = BCrypt.hashpw(staff.getPassword(), BCrypt.gensalt());
         try (PreparedStatement stmnt = connection.prepareStatement(query)) {
             stmnt.setString(1, staff.getUserName());
@@ -51,7 +51,7 @@ public class StaffRepoImpl implements StaffRepo {
 
     @Override
     public void update(StaffUser staff) {
-        String query = "UPDATE staff SET username=?, password=?, full_name=?, role=? WHERE staff_id=?";
+        String query = "UPDATE staff_users SET username=?, password=?, full_name=?, role=? WHERE staff_id=?";
         try (PreparedStatement stmnt = connection.prepareStatement(query)) {
             stmnt.setString(1, staff.getUserName());
             stmnt.setString(2, staff.getPassword());
@@ -64,7 +64,7 @@ public class StaffRepoImpl implements StaffRepo {
 
     @Override
     public void delete(int id) {
-        String query = "DELETE FROM staff WHERE staff_id=?";
+        String query = "DELETE FROM staff_users WHERE staff_id=?";
         try (PreparedStatement stmnt = connection.prepareStatement(query)) {
             stmnt.setInt(1, id);
             stmnt.executeUpdate();
@@ -73,7 +73,7 @@ public class StaffRepoImpl implements StaffRepo {
 
     @Override
     public StaffUser findByUsername(String username) {
-        String query = "SELECT * FROM staff WHERE username=?";
+        String query = "SELECT * FROM staff_users WHERE username=?";
         try (PreparedStatement stmnt = connection.prepareStatement(query)) {
             stmnt.setString(1, username);
             ResultSet rs = stmnt.executeQuery();
@@ -106,10 +106,10 @@ public class StaffRepoImpl implements StaffRepo {
 
     private StaffUser mapRow(ResultSet rs) throws SQLException {
         return new StaffUser(
-            rs.getInt("staffid"),
+            rs.getInt("staff_id"),
             rs.getString("username"),
             rs.getString("password"),
-            rs.getString("fullname"),
+            rs.getString("full_name"),
             rs.getString("role")
         );
     }
