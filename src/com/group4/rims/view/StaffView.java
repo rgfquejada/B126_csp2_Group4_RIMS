@@ -57,14 +57,14 @@ public class StaffView {
     private void handleViewAll() {
         List<StaffUser> list = staffController.getAllStaffUsers();
         System.out.println("\n==============================================================================");
-        System.out.printf("%-5s | %-15s | %-25s | %-20s\n", "ID", "USERNAME", "FULL NAME", "ASSIGNED ROLE");
+        System.out.printf("%-5s | %-20s | %-25s | %-20s\n", "ID", "USERNAME", "FULL NAME", "ASSIGNED ROLE");
         System.out.println("==============================================================================");
         
         if (list.isEmpty()) {
             System.out.println("                       No administrative staff profiles loaded.               ");
         } else {
             for (StaffUser u : list) {
-                System.out.printf("%-5d | %-15s | %-25s | %-20s\n",
+                System.out.printf("%-5d | %-20s | %-25s | %-20s\n",
                         u.getStaffId(), u.getUserName(), u.getFullName(), u.getRole());
             }
         }
